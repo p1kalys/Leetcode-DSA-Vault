@@ -5,10 +5,10 @@
 class Solution {
 public:
     int rand10() {
-        int ans= INT_MAX;
-        while(ans >= 40){
-            ans= 7*(rand7()-1)+(rand7()-1);
+        int index=INT_MAX;
+        while (index>=40){
+            index=rand7()-1+(rand7()-1)*7;
         }
-        return (ans%10) +1;
+        return 1+(index%10);
     }
 };
