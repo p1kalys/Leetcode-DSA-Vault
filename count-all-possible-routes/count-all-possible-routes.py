@@ -1,23 +1,20 @@
 class Solution:
-    MOD = 1000000007
-
-    def helper(self, locations, city, finish, remainFuel, memo):
-        if remainFuel < 0:
-            return 0
+    def countRoutes(self, locations: List[int], start: int, finish: int, fuel: int) -> int:
+        @lru_cache(None)
+        def dfs(curr: int, remaining_fuel: int) -> int:
+            if remaining_fuel < 0:
+                return 0
+            else:
+                if curr == finish:
+                    result = 1
+                    
+                else:
+                    result = 0
+            for next_loc in range(len(locations)):
+                    
+                if curr != next_loc:
+                    cost = abs(locations[curr] - locations[next_loc])
+                    result += dfs(next_loc, remaining_fuel - cost)
+            return result % 1000000007
         
-        if memo[city][remainFuel] is not None:
-            return memo[city][remainFuel]
-        
-        total = 1 if city == finish else 0
-        
-        for nextCity in range(len(locations)):
-            if nextCity != city and remainFuel >= abs(locations[nextCity] - locations[city]):
-                total = (total + self.helper(locations, nextCity, finish, remainFuel - abs(locations[nextCity] - locations[city]), memo)) % self.MOD
-        
-        memo[city][remainFuel] = total
-        return total
-
-    def countRoutes(self, locations, start, finish, fuel):
-        n = len(locations)
-        memo = [[None] * (fuel + 1) for _ in range(n)]
-        return self.helper(locations, start, finish, fuel, memo)
+        return dfs(start, fuel)
