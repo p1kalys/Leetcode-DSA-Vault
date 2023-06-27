@@ -1,10 +1,11 @@
-def fact(n):
-    if n==1:
-        return 1
-    elif n==0:
-        return 1
-    else:
-        return n*fact(n-1)
 class Solution:
-    def uniquePaths(self, m: int, n: int) -> int:
-        return fact(m+n-2)//(fact(m-1)*fact(n-1))
+    def uniquePaths(self, m, n):
+        dp = [[0] * n for _ in range(m)]
+        for i in range(m):
+            for j in range(n):
+                if i == 0 or j == 0:
+                    dp[i][j] = 1
+                else:
+                    dp[i][j] = dp[i-1][j] + dp[i][j-1]
+        
+        return dp[m-1][n-1]
