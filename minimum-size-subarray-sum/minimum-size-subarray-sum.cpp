@@ -8,10 +8,8 @@ public:
         for(int i=0;i<n;i++){
             sum+=nums[i];
             if(sum>=target){
-                ans=min(ans,(i-j+1));
                 while(sum>=target){
                     sum-=nums[j];
-                   
                     ans=min(ans,(i-j+1));
                     j++;
                 }
