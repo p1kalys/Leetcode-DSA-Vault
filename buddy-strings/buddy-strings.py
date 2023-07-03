@@ -11,7 +11,7 @@ class Solution:
         while i < j and s[i] == goal[i]:
             i += 1
 
-        while j >= 0 and s[j] == goal[j]:
+        while j > i and s[j] == goal[j]:
             j -= 1
 
         if i < j:
