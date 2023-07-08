@@ -1,15 +1,22 @@
+def find(index,candidates,target,Sum,slate,res):
+    if Sum==target:    
+        res.append(slate[:])
+        return 
+    elif Sum>target:
+        return
+    for i in range(index,len(candidates)):
+        if i!=index and candidates[i]==candidates[i-1]:
+            continue
+        Sum+=candidates[i]
+        slate.append(candidates[i])
+        find(i+1,candidates,target,Sum,slate,res)
+        slate.pop()
+        Sum-=candidates[i]
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        res = []
         candidates.sort()
-        def dfs(idx, path, cur):
-            if cur > target: return
-            if cur == target:
-                res.append(path)
-                return
-            for i in range(idx, len(candidates)):
-                if i > idx and candidates[i] == candidates[i-1]:
-                    continue
-                dfs(i+1, path+[candidates[i]], cur+candidates[i])
-        dfs(0, [], 0)
+        slate=[]
+        res=[]
+        Sum=0
+        find(0,candidates,target,Sum,slate,res)
         return res
