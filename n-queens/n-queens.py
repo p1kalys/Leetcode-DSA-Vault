@@ -1,52 +1,39 @@
+def isValid(board,row,col,n):
+    i=col
+    while i>=0:
+        if board[row][i]=='Q':
+            return False
+        i-=1
+    r=row
+    c=col
+    while r >= 0 and c >= 0:
+        if board[r][c]=='Q':
+            return False
+        r -= 1
+        c -= 1
+    i=row
+    j=col
+    while i<n and j>=0:
+        if board[i][j]=='Q':
+            return False
+        i+=1
+        j-=1
+    return True
+
+def Possible(board, col,ans,n):
+    if col==n:
+        ans.append(list(board))
+        return 
+    for i in range(n):
+        if isValid(board,i,col,n):
+            board[i] = board[i][:col] + 'Q' + board[i][col+1:]
+            Possible(board, col+1,ans,n)
+            board[i] = board[i][:col] + '.' + board[i][col+1:]
+
+
 class Solution:
-    def isSafe1(self, row, col, board, n):
-        # check upper element
-        duprow = row
-        dupcol = col
-
-
-        while row >= 0 and col >= 0:
-            if board[row][col] == 'Q':
-                return False
-            row -= 1
-            col -= 1
-
-
-        col = dupcol
-        row = duprow
-        while col >= 0:
-            if board[row][col] == 'Q':
-                return False
-            col -= 1
-
-
-        row = duprow
-        col = dupcol
-        while row < n and col >= 0:
-            if board[row][col] == 'Q':
-                return False
-            row += 1
-            col -= 1
-
-
-        return True
-
-
-    def solve(self, col, board, ans, n):
-        if col == n:
-            ans.append(list(board))
-            return
-
-
-        for row in range(n):
-            if self.isSafe1(row, col, board, n):
-                board[row] = board[row][:col] + 'Q' + board[row][col+1:]
-                self.solve(col+1, board, ans, n)
-                board[row] = board[row][:col] + '.' + board[row][col+1:]
-
-
-    def solveNQueens(self, n):
-        ans = []
-        board = ['.'*n for _ in range(n)]
-        self.solve(0, board, ans, n)
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        ans=[]
+        board=['.'*n for _ in range(n)]
+        Possible(board,0,ans,n)
         return ans
