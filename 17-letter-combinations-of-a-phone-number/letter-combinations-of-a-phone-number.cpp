@@ -1,6 +1,5 @@
 class Solution {
 public:
-
     void solve(string &digits, vector<string> &choice, vector<string> &result, string &ans, int index){
 
         if(ans.length() == digits.size()){
