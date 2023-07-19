@@ -1,10 +1,13 @@
 class Solution:
-    def nthUglyNumber(self, n):
-        factors, k = [2,3,5], 3
-        starts, Numbers = [0] * k, [1]
-        for i in range(n-1):
-            candidates = [factors[i]*Numbers[starts[i]] for i in range(k)]
-            new_num = min(candidates)
-            Numbers.append(new_num)
-            starts = [starts[i] + (candidates[i] == new_num) for i in range(k)]
-        return Numbers[-1]
+    def nthUglyNumber(self, n: int) -> int:
+        list1=[0]*n
+        list1[0]=1
+        a=b=c=0
+        for i in range(1,n):
+            list1[i]=min(list1[a]*2,list1[b]*3,list1[c]*5)
+            if list1[a]*2==list1[i]:a+=1
+            if list1[b]*3==list1[i]:b+=1
+            if list1[c]*5==list1[i]:c+=1
+        return list1[n-1]
+        
+    
