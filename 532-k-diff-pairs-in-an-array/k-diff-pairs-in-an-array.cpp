@@ -7,10 +7,12 @@ public:
         }
         int res=0;
         for(auto i:mp){
-            if(k>0 && mp.find(k+i.first)!=mp.end()){
-                res++;
+            if(k==0){
+                if(i.second>1){
+                    res++;
+                }
             }
-            else if(k==0 && i.second>1){
+            else if(k>0 && mp.find(k+i.first)!=mp.end()){
                 res++;
             }
 
