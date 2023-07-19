@@ -9,6 +9,7 @@ class Solution:
         for i in range(len(nums)-1,-1,-1):
             Next=set()
             for t in dp:
+                if (t+nums[i]==target): return True
                 Next.add(t+nums[i])
                 Next.add(t)
             dp=Next
