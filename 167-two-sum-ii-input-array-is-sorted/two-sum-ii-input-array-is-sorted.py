@@ -1,16 +1,13 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        numMap = {}
-        n = len(nums)
-
-        # Build the hash table
-        for i in range(n):
-            numMap[nums[i]] = i
-
-        # Find the complement
-        for i in range(n):
-            complement = target - nums[i]
-            if complement in numMap and numMap[complement] != i:
-                return [i+1, numMap[complement]+1]
-
-        return [] 
+        start=0
+        end=len(nums)-1
+        while (start<end):
+            s=nums[start]+nums[end]
+            if s==target:
+                return [start+1,end+1]
+            elif s<target:
+                start+=1
+            else:
+                end-=1
+        return []
