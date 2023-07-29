@@ -4,5 +4,6 @@ class Solution:
         for num in range(2, n):
             if seen[num]: continue
             ans += 1
-            seen[num*num:n:num] = [1] * ((n - 1) // num - num + 1)
+            for i in range(num*num,n,num):
+                seen[i]=True
         return ans
