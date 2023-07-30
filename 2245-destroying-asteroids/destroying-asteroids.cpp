@@ -1,18 +1,13 @@
-
 class Solution {
 public:
-
-    bool asteroidsDestroyed(long long mass, vector<int>& ass) {
-        
-        sort(ass.begin(), ass.end());
-
-        for(int i = 0; i < ass.size(); ++i)
+    bool asteroidsDestroyed(int m, vector<int>& a) {
+        sort(a.begin(),a.end());
+        long long sum = m;
+        for(int i = 0;i<a.size();i++)
         {
-           if(mass < ass[i]) return false;
-           
-           else mass += ass[i];   
+            if(a[i]>sum) return false;
+            sum+=a[i];
         }
-
-        return true;
+        return true; 
     }
 };
