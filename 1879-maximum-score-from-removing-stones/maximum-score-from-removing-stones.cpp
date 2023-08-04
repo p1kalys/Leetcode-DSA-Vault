@@ -5,7 +5,6 @@ public:
         int mini = min(a,min(b,c));
         int mid = a+b+c-maxi-mini;
         if(mini+mid<=maxi) return mini+mid;
-
         return (a+b+c)/2;
     }
 };
