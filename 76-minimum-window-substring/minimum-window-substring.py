@@ -6,7 +6,6 @@ class Solution:
             return ""
         l=0
         res=[-1,-1]
-        
         for i in t:
             countT[i]=countT.get(i,0)+1
         have, need=0,len(countT)
