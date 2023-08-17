@@ -15,6 +15,5 @@ class Solution:
                 temp.next=temp.next.next
             else:
                 temp=temp.next
-        if head==val:
-            head=head.next
+        
         return head
