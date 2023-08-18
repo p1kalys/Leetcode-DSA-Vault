@@ -3,14 +3,23 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        n = len(nums)
-        k, l = n - 2, n - 1
-        while k >= 0 and nums[k] >= nums[k + 1]:
-            k -= 1
-        if k < 0:
+        n=len(nums)
+        index=-1
+        for i in range(n-2,-1,-1):
+            if nums[i]<nums[i+1]:
+                index=i
+                break
+
+        if index==-1:
             nums.reverse()
         else:
-            while l > k and nums[l] <= nums[k]:
-                l -= 1
-            nums[k], nums[l] = nums[l], nums[k]
-            nums[k + 1:n] = reversed(nums[k + 1:n])
+            for i in range(n-1,index-1,-1):
+                if nums[i]>nums[index]:
+                    nums[i],nums[index]=nums[index],nums[i]
+                    break
+            nums[index+1:]=nums[n-1:index:-1]
+      
+
+
+
+       
