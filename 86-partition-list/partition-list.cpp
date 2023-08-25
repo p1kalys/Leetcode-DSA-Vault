@@ -10,37 +10,25 @@
  */
 class Solution {
 public:
-    void insert(ListNode *&tail,int data){
-        ListNode *temp=new ListNode (data);
-        tail->next=temp;
-        tail=temp;
-    }
-
     ListNode* partition(ListNode* head, int x) {
-        ListNode* big= new ListNode(-1);
-        ListNode* bigt=big;
-        ListNode* small=new ListNode(-1);
-        ListNode* smallt=small;
+        ListNode* left = new ListNode(0);
+        ListNode* right = new ListNode(0);
+        ListNode* lt = left, *rt = right;
 
-        ListNode *temp=head;
-        while(temp!=NULL){
-        if(temp->val < x){
-          insert(smallt,temp->val);
+        while (head) {
+            if (head -> val < x) {
+                lt -> next = head;
+                lt = lt -> next;
+            }
+            else {
+                rt -> next = head;
+                rt = rt -> next;
+            }
+            head = head -> next;
         }
-        else{
-            insert(bigt,temp->val);
-        }
-        temp=temp->next;
-        }
-      
-        if(small->next==NULL){
-            return big->next;
-        }
+        lt -> next = right -> next;
+        rt -> next = NULL;
 
-        smallt->next=big->next;
-        ListNode *ans=small->next;
-        delete small;
-        delete  big;
-        return ans;
+        return left -> next;
     }
 };
