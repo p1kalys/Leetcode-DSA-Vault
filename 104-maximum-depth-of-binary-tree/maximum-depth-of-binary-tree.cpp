@@ -18,13 +18,9 @@ public:
         if(root->left==NULL and root->right==NULL){
             return 1;
         }
-        int m1=INT_MIN;
-        if (root->right){
-            m1=max(maxDepth(root->right),m1);
-        }
-        if(root->left){
-            m1=max(maxDepth(root->left),m1);
-        }
-        return m1+1;
+        int l = maxDepth(root->right);
+        int r = maxDepth(root->left);
+        
+        return max(l,r)+1;
     }
 };
