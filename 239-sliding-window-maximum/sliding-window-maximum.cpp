@@ -6,7 +6,7 @@ public:
         for(int i = 0; i < nums.size(); i++) {
             // if the front element of the deque is the index i - k then its out of the window
             // so we will have to pop the front most element
-            if (dq.front() == i - k) dq.pop_front();
+            if (!dq.empty() && dq.front() == i - k) dq.pop_front();
             // we are storing indices in dq.
             // while nums[last_indice_stored] < nums[i], we will have to pop the last element
             while (!dq.empty() && nums[dq.back()] < nums[i])
