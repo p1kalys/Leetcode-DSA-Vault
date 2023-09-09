@@ -8,10 +8,10 @@ class Solution:
                 return 0
             if dp[i][coins] != -1:
                 return dp[i][coins]
-            dp[i][coins] = dfs(i + 1, coins)
+            dp[i][coins] = dfs(i + 1, coins) #not take
             curPile = 0
             for j in range(min(coins, len(piles[i]))):
-                curPile += piles[i][j]
-                dp[i][coins] = max(dp[i][coins], curPile + dfs(i + 1, coins - j - 1))
+                curPile += piles[i][j] 
+                dp[i][coins] = max(dp[i][coins], curPile + dfs(i + 1, coins - j - 1)) #taking the coin from same piles until it exist and checking 
             return dp[i][coins]
         return dfs(0, k) 
